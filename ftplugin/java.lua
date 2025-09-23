@@ -49,7 +49,7 @@ local config = {
       },
       inlayHints = {
         parameterNames = {
-          enabled = 'all', -- literals, all, none
+          enabled = 'all',
         },
       },
       format = {

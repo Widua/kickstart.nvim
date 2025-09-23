@@ -17,6 +17,8 @@ require('lazy').setup({
   'NMAC427/guess-indent.nvim',
   'nvim-lua/plenary.nvim',
   'mfussenegger/nvim-jdtls',
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.gitsigns',
   require 'plugins.gitsigns',
   require 'plugins.whichkey',
   require 'plugins.telescope',
@@ -25,57 +27,10 @@ require('lazy').setup({
   require 'plugins.conform',
   require 'plugins.harpoon',
   require 'plugins.blink',
-  {
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    config = function()
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
-
-      vim.cmd.colorscheme 'tokyonight-night'
-    end,
-  },
-
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-
-  { -- Collection of various small independent plugins/modules
-    'echasnovski/mini.nvim',
-    config = function()
-      require('mini.ai').setup { n_lines = 500 }
-      require('mini.pairs').setup()
-
-      require('mini.surround').setup()
-
-      local statusline = require 'mini.statusline'
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-    end,
-  },
-
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'java' },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
-  },
-
-  require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.neo-tree',
-  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'plugins.tokyonight',
+  require 'plugins.todocomments',
+  require 'plugins.mini_nvim',
+  require 'plugins.treesitter',
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
