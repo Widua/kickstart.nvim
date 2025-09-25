@@ -164,6 +164,7 @@ return {
     vim.lsp.enable { 'vtsls', 'vue_ls' }
     local servers = {
       gopls = {},
+      lemminx = {},
       dockerls = {},
       pylsp = {},
       vue_ls = {},
@@ -178,7 +179,6 @@ return {
           },
         },
       },
-      --
       lua_ls = {
         settings = {
           Lua = {
